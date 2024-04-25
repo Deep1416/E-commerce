@@ -11,3 +11,4 @@ export { default as ProductDisplay } from "./productDisplay/ProductDisplay.jsx";
 export { default as Description } from "./description/Description.jsx";
 export { default as RelatedProducts } from "./relatedProducts/RelatedProducts.jsx";
 export { default as CartItems } from "./cartItems/CartItems.jsx";
+

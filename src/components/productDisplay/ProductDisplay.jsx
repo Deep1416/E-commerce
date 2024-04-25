@@ -3,11 +3,12 @@ import start_icon from "../../Assets/star_icon.png";
 import start_dull_icon from "../../Assets/star_dull_icon.png";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Slice";
+import { addToWhislist } from "../../redux/WhislistSlice";
 const ProductDisplay = (props) => {
-  const { product } = props;
+  const { product  } = props;
 
   const dispatch = useDispatch();
-
+  let discount = Math.floor((product.old_price - product.new_price ) / product.old_price * 100);
   return (
     <div className="flex my-0 mx-[170px]">
       <div className="flex gap-[17px]">
@@ -33,11 +34,17 @@ const ProductDisplay = (props) => {
           <img src={start_dull_icon} alt="" />
           <p>(122)</p>
         </div>
-        <div className="flex my-[40px] mx-0 gap-[30px] text-2xl font-bold">
+        <div className="flex mt-4 mx-0 gap-4 text-2xl font-bold">
           <div className="text-[#818181] line-through">
             ${product.old_price}
           </div>
           <div className="text-[#ff4141]">${product.new_price}</div>
+          <div className="text-green-500">
+            {  discount }% <span>OFF</span>
+          </div>
+        </div>
+        <div className="text-lg text-gray-500 mb-4">
+          <p>inclusive of all taxes</p>
         </div>
         <div>
           A light weight, Usually Knitted , Pullover Shirt Close-Fitting and
@@ -66,13 +73,22 @@ const ProductDisplay = (props) => {
             </div>
           </div>
         </div>
-        <button
-          className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-          // onClick={()=>addToCart(product.id)}
-          onClick={() => dispatch(addToCart(product))}
-        >
-          ADD TO Cart
-        </button>
+        <div className="flex gap-6 items-center justify-center">
+          <button
+            className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
+            // onClick={()=>addToCart(product.id)}
+            onClick={() => dispatch(addToCart(product))}
+          >
+            ADD TO Cart
+          </button>
+          <button
+            className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
+            // onClick={()=>addToCart(product.id)}
+            onClick={() => dispatch(addToWhislist(product))}
+          >
+            Whislist
+          </button>
+        </div>
         <p className="mt-[10px] ">
           <span className="font-semibold">Category :</span>Women , T-shirt ,
           Crop Top

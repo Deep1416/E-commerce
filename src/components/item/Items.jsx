@@ -15,6 +15,7 @@ const Items = (props) => {
         <div className="text-[#8c8c8c] text-lg font-medium line-through ">
           ${props.old_price}
         </div>
+        
       </div>
     </div>
   );
