@@ -8,9 +8,12 @@ export const cartSlice = createSlice({
       const existingProductIndex = state.findIndex(item => item.id === action.payload.id);
       if (existingProductIndex !== -1) {
         state[existingProductIndex].Quantity += 1;
+        // state[existingProductIndex].size += "s";
       } else {
         state.push({ ...action.payload, Quantity: 1 });
+        // state.push({ ...action.payload, size: "s" });
       }
+      // console.log(initialState);
     },
     handleIncrease: (state, action) => {
       const existingProduct = state.find(item => item.id === action.payload.id);

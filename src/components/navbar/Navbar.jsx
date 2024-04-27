@@ -13,7 +13,7 @@ const Navbar = () => {
     <header className="box bg-yellow-400">
       <nav className="flex justify-between items-center w-full h-full">
         <div className="text-xl">
-          <Link to="/">Comapny Logo</Link>
+          <Link to="/">Smaller Shop</Link>
         </div>
         <div>
           <div className="flex justify-evenly gap-10 items-center">

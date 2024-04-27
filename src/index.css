@@ -8,9 +8,9 @@
   box-sizing: border-box;
 }
 .box{
-  width: 1330px;
+  /* width: 1330px; */
   padding: 12px;
-  margin: auto;
+  /* margin: auto; */
   height: 100%;
 }
 
@@ -36,10 +36,10 @@
 
 .offers{
   width: 85%;
-  height: 60%;
+  height: 50%;
   display: flex;
   margin: auto;
   padding: 0px 140px;
-  margin-bottom: 150px;
+  margin-bottom: 80px;
   background: linear-gradient(180deg , #fde1ff 0% , #e1ffea22 60%);
 }

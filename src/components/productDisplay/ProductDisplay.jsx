@@ -15,14 +15,20 @@ const ProductDisplay = (props) => {
   );
   const navigate = useNavigate();
   const details = JSON.parse(localStorage.getItem("userDetails"));
-const addTohandler =()=>{
-  if(details?.role){
-    dispatch(addToCart(product))
-  }else{
-    navigate("/login")
-  }
- 
-}
+  const addTohandler = () => {
+    if (details?.role) {
+      dispatch(addToCart(product));
+    } else {
+      navigate("/login");
+    }
+  };
+  const addTowhsliLogin = () => {
+    if (details?.role) {
+      dispatch(addToWhislist(product));
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="flex my-0 mx-[170px]">
       <div className="flex gap-[17px]">
@@ -90,14 +96,14 @@ const addTohandler =()=>{
         <div className="flex gap-6 items-center justify-center">
           <button
             className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-            onClick={()=>addTohandler(product)}
+            onClick={() => addTohandler(product)}
           >
             ADD TO Cart
           </button>
 
           <button
             className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-            onClick={() => dispatch(addToWhislist(product))}
+            onClick={() => addTowhsliLogin(product)}
           >
             Whislist
           </button>

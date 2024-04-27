@@ -4,7 +4,7 @@ import Items from "../item/Items";
 const Popular = () => {
   return (
     <>
-      <div className="flex flex-col items-center gap-[10px] h-[90%]">
+      <div className="flex flex-col items-center gap-[10px] h-[90%] mb-20">
         <h1 className="text-[#171717] text-[50px] font-semibold">POPULAR IN WOMEN</h1>
         <hr className="popular_hr"/>
         <div className="mt-12 flex gap-8">
