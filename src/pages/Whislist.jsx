@@ -4,7 +4,7 @@ import { Items } from "../components";
 import { handleRemovewhislist } from "../redux/WhislistSlice";
 import whislistImage from "../Assets/Images/whislist.svg"; // Renamed the image variable
 import { NavLink } from "react-router-dom";
-
+import { addToCart  } from "../redux/Slice";
 const Whislist = () => {
   const whislistItems = useSelector((state) => state.whislist); // Renamed the selector variable
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Whislist = () => {
           <p className="mt-3">Hey! Your wishlist is empty.</p>
           <p className="mt-3">Save your favourites here and make them yours soon!</p>
          </div>
-         <button className="mt-3 mb-48 px-10 text-lg font-semibold py-2 bg-red-500"><NavLink to={"/"}>Shop Now</NavLink></button>
+         <NavLink to={"/"}><button className="mt-3 mb-48 px-10 text-lg font-semibold py-2 bg-red-500">Shop Now</button></NavLink>
         </div>
       ) : (
         <div className="flex items-center gap-[76px] p-10 flex-wrap">
@@ -39,7 +39,9 @@ const Whislist = () => {
                   old_price={item.old_price}
                 />
                 <div className="flex gap-2 pt-4">
-                  <button className="py-2 px-5 w-[150px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none">
+                  <button  onClick={()=>(dispatch(addToCart(item)),
+                  removeFromWhislist(item.id)
+                  )} className="py-2 px-5 w-[150px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none">
                     Move To Cart
                   </button>
                   <button

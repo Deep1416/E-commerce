@@ -1,10 +1,10 @@
 // Category.jsx
-import React from "react";
+import React, { useState } from "react";
 import dropdown_icon from "../Assets/dropdown_icon.png";
 import { Items } from "../components";
-import all_product from "../Assets/all_product"
+import all_product from "../Assets/all_product";
 const Category = (props) => {
-
+  const [arrowDown, setArrowDown] = useState(false);
   return (
     <div className="">
       <img
@@ -16,16 +16,27 @@ const Category = (props) => {
         <p className="font-semibold">
           <span className="font-semibold">Showing 1-12</span>out of 36 products
         </p>
-        <div
-          className="my-[10px] mx-[20px] rounded-[40px]
-        border border-[#888]"
-        >
-          sort by <img src={dropdown_icon} alt="" />
+        <div>
+          <div
+            className=" flex items-center gap-2 my-[10px] mx-[20px] rounded-[40px]
+        border border-[#888] p-1"
+            onClick={() => setArrowDown(!arrowDown)}
+          >
+            sort by <img src={dropdown_icon} alt="" />
+          </div>
+          {arrowDown && (
+            <div className="">
+              <ul>
+                <li>High to Low</li>
+                <li>Low to High</li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
       <div
         style={{
-          display : "grid",
+          display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr ",
           margin: "20px 170px",
           gap: "20px",

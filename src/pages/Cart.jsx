@@ -1,10 +1,10 @@
 import React from 'react'
-import CartItems from '../components/cartItems/CartItems'
-
+import Cart1 from '../components/cartItems/Cart1'
 const Cart = () => {
   return (
     <div>
-      <CartItems/>
+     
+      <Cart1/>
     </div>
   )
 }

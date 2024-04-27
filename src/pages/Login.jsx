@@ -12,9 +12,7 @@ const Login = () => {
       const user = await signInWithEmailAndPassword(auth, email, password);
       console.log(user);
       alert("Login successfully");
-      
-      navigate("/")
-
+      navigate("/");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -22,8 +20,6 @@ const Login = () => {
       alert("failed");
     }
   };
-  // const person = { name: "Alex" };
-  
 
   return (
     <div className="w-full h-full pb-[100px] bg-[#fce3fe] pt-[100px]">

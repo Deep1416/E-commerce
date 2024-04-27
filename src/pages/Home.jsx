@@ -1,5 +1,6 @@
 import React from 'react'
 import {Carsoul, NewCollections, NewsLetter, Offers, Popular} from "../components"
+import Protected from '../protected/Protected'
 const Home = () => {
   return (
     <>
@@ -8,6 +9,7 @@ const Home = () => {
     <Offers/>
     <NewCollections/>
     <NewsLetter/>
+    {/* <Protected/> */}
     </>
   )
 }

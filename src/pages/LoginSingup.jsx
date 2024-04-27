@@ -12,18 +12,19 @@ const LoginSingup = () => {
   const handleSign = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-
       console.log(user);
       const userObj = {
         name: name,
         uid: user.user.uid,
         email: user.user.email,
+        role : "user"
       };
       console.log(userObj);
       const userRefrence = collection(db, "userDetails");
-      // Add User Detail
       addDoc(userRefrence, userObj);
-
+      console.log(userObj);
+      localStorage.setItem("userDetails" , JSON.stringify(userObj));
+      console.log("completed");
       alert("sign up successfully");
       navigate("/login")
     } catch (error) {
@@ -33,7 +34,8 @@ const LoginSingup = () => {
       alert("failed");
     }
 
-    // ..
+    
+
   };
   return (
     <div className="w-full h-full pb-[100px] bg-[#fce3fe] pt-[100px]">

@@ -4,11 +4,25 @@ import start_dull_icon from "../../Assets/star_dull_icon.png";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Slice";
 import { addToWhislist } from "../../redux/WhislistSlice";
+import Protected from "../../protected/Protected";
+import { useNavigate } from "react-router-dom";
 const ProductDisplay = (props) => {
-  const { product  } = props;
+  const { product } = props;
 
   const dispatch = useDispatch();
-  let discount = Math.floor((product.old_price - product.new_price ) / product.old_price * 100);
+  let discount = Math.floor(
+    ((product.old_price - product.new_price) / product.old_price) * 100
+  );
+  const navigate = useNavigate();
+  const details = JSON.parse(localStorage.getItem("userDetails"));
+const addTohandler =()=>{
+  if(details?.role){
+    dispatch(addToCart(product))
+  }else{
+    navigate("/login")
+  }
+ 
+}
   return (
     <div className="flex my-0 mx-[170px]">
       <div className="flex gap-[17px]">
@@ -40,7 +54,7 @@ const ProductDisplay = (props) => {
           </div>
           <div className="text-[#ff4141]">${product.new_price}</div>
           <div className="text-green-500">
-            {  discount }% <span>OFF</span>
+            {discount}% <span>OFF</span>
           </div>
         </div>
         <div className="text-lg text-gray-500 mb-4">
@@ -76,14 +90,13 @@ const ProductDisplay = (props) => {
         <div className="flex gap-6 items-center justify-center">
           <button
             className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-            // onClick={()=>addToCart(product.id)}
-            onClick={() => dispatch(addToCart(product))}
+            onClick={()=>addTohandler(product)}
           >
             ADD TO Cart
           </button>
+
           <button
             className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-            // onClick={()=>addToCart(product.id)}
             onClick={() => dispatch(addToWhislist(product))}
           >
             Whislist
