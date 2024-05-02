@@ -4,10 +4,10 @@ import Items from "../item/Items";
 
 const NewCollections = () => {
   return (
-    <div className="flex flex-col items-center gap-[10px] h-[90%] mb-[100px]">
-      <h1 className="text-[#171717] text-[50px] font-semibold">NEW COLLECTIONS</h1>
+    <div className="flex flex-col items-center gap-[10px] h-[90%] md:mb-[100px]">
+      <h1 className="text-[#171717] text-[26px] md:text-[50px] font-semibold">NEW COLLECTIONS</h1>
       <hr className="popular_hr" />
-      <div style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }} className="grid mt-[50px] gap-[30px]">
+      <div className="grid mt-[50px] md:gap-[30px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {new_collection.map((item, i) => (
           <Items
             key={i}

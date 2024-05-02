@@ -43,3 +43,15 @@
   margin-bottom: 80px;
   background: linear-gradient(180deg , #fde1ff 0% , #e1ffea22 60%);
 }
+
+/* @media screen and (min-width: 360px) {
+  .popular_hr{
+    width: 100px;
+  }
+} */
+
+@media (max-width: 768px) {
+  .offers {
+    padding: 0px 40px; /* Adjust padding for smaller screens */
+  }
+}

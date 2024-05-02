@@ -5,12 +5,12 @@ import pintester_icon from "../../Assets/pintester_icon.png";
 import whatsapp_icon from "../../Assets/whatsapp_icon.png";
 const Footer = () => {
   return (
-    <div className="flex flex-col justify-center items-center gap-[50px]">
+    <div className="flex flex-col justify-center items-center gap-6 md:gap-[50px]">
       <div className="flex items-center gap-[30px]">
-        <img src={footer_logo} alt="" />
-        <p className="text-[#383838] text-[46px] font-bold">SHOPPER</p>
+        <img src={footer_logo} alt="" className="w-[50px] md:w-full" />
+        <p className="text-[#383838] text-[26px] md:text-[46px] font-bold">SHOPPER</p>
       </div>
-      <ul className="flex gap-[50px] text-[20px] text-[#252525]">
+      <ul className="flex flex-wrap gap-5 justify-center items-center  md:gap-[50px] text-[20px] text-[#252525]">
         <li className="cursor-pointer">Company</li>
         <li className="cursor-pointer">Products</li>
         <li className="cursor-pointer">Offices</li>
@@ -28,7 +28,7 @@ const Footer = () => {
           <img src={whatsapp_icon} alt="" />
         </div>
       </div>
-      <div className="flex flex-col items-center gap-[30px] w-full mb-[30px] text-[#1a1a1a] text-[20px]">
+      <div className="flex flex-col items-center gap-[30px] w-full mb-[30px] text-[#1a1a1a] text-[10px] md:text-[20px]">
         <hr className="w-[80%] border-none rounded-[10px] h-[3px] bg-[#c7c7c7]" />
         <p>Copyright @ 2024 - All Right Reserved </p>
       </div>

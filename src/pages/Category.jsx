@@ -4,41 +4,55 @@ import dropdown_icon from "../Assets/dropdown_icon.png";
 import { Items } from "../components";
 import all_product from "../Assets/all_product";
 const Category = (props) => {
-  // console.log(props);
+  const [sortPrice, setSortPrice] = useState([]);
+  // console.log(all_product[0].new_price);
   const [arrowDown, setArrowDown] = useState(false);
-  const handleSortHigh =() =>{
 
-  }
-  const handleSortLow =()=>{
+  // const sort = all_product.map((price) =>{
+  //   return(
+  //     setSortPrice(price.new_price)
+  //   )
+  // })
 
-  }
+  const handleSortHigh = () => {
+    const sortedProducts = all_product.slice().sort((a, b) => b.new_price - a.new_price);
+    setSortPrice(sortedProducts);
+  };
+   const handleSortLow = () => {
+    const sortedProducts = all_product.slice().sort((a, b) => a.new_price - b.new_price);
+    setSortPrice(sortedProducts);
+  };
   return (
-    <div className="">
+    <div className="pb-16">
       <img
         className="block my-[30px] mx-auto w-[85%]"
         src={props.banner}
-        alt=""
+        alt="This is a banner image"
       />
-      <div className="flex my-0 mx-[124px] justify-between items-center">
-        {/* <p className="font-semibold">
-          <span className="font-semibold">Showing 1-12</span>out of 36 products
-        </p> */}
-        <div>
+      <div className="flex md:my-0 md:mx-[124px] justify-between items-center ">
+        <div className="flex flex-col items-center justify-center relative">
           <div
-            className=" flex items-center gap-2 my-[10px]  
+            className=" flex items-center gap-2   
        p-1"
             onClick={() => setArrowDown(!arrowDown)}
           >
-            <span className="text-lg font-semibold text-gray-500">SORT BY</span>{" "}
-            <span className="flex items-center gap-2 text-base text-gray-400">
+            <span className=" text-[14px] md:text-lg font-semibold text-gray-500">SORT BY</span>{" "}
+            <span className="flex items-center gap-2 text-[10px] md:text-base text-gray-400">
               poplar <img src={dropdown_icon} className="bg-gary-400" alt="" />
             </span>{" "}
           </div>
           {arrowDown && (
-            <div className="">
-              <ul className="px-4 w-40 py-2 text-[14px] bg-gray-300  ">
-                <li onClick={()=>handleSortHigh} className="cursor-pointer">Price : High to Low</li>
-                <li className="mt-2 cursor-pointer" onClick={()=>handleSortLow} >Price : Low to High</li>
+            <div className="absolute top-[36px] z-40">
+              <ul className="rounded-md px-2 w-36 py-2 text-[14px] bg-gray-300  ">
+                <li onClick={() => handleSortHigh} className="cursor-pointer">
+                  Price : High to Low
+                </li>
+                <li
+                  className="mt-2 cursor-pointer"
+                  onClick={() => handleSortLow}
+                >
+                  Price : Low to High
+                </li>
               </ul>
             </div>
           )}
@@ -46,11 +60,12 @@ const Category = (props) => {
       </div>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr ",
-          margin: "20px 124px",
-          gap: "20px",
+          // display: "grid",
+          // gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+          // margin: "40px 124px",
+          // gap: "20px",
         }}
+        className="my-[40px] mx-[124px] gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-5 justify-items-center"
       >
         {all_product.map((item, i) => {
           return props.items === item.category ? (
@@ -64,9 +79,6 @@ const Category = (props) => {
             />
           ) : null;
         })}
-      </div>
-      <div className=" cursor-pointer flex justify-center items-center my-[150px] mx-auto w-[233px] h-[69px] rounded-[75px] bg-[#ededed] text-[#787878] text-[18px] font-medium ">
-        Explore More
       </div>
     </div>
   );

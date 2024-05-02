@@ -1,11 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 const Items = (props) => {
   return (
-    <div className="w-[260px]">
+    <div className="w-[260px] h-[360px]">
       <Link to={`/product/${props.id}`}>
         {" "}
-        <img  onClick={window.scrollTo(0,0)} className="item overflow-hidden" src={props.image} alt="" />
+        <div className="overflow-hidden w-full h-[240px]">
+          <img
+            onClick={window.scrollTo(0, 0)}
+            className="item"
+            src={props.image}
+            alt=""
+          />
+        </div>
       </Link>
       <p className="my-1">{props.name}</p>
       <div className="flex gap-5">
@@ -15,7 +22,6 @@ const Items = (props) => {
         <div className="text-[#8c8c8c] text-lg font-medium line-through ">
           ${props.old_price}
         </div>
-        
       </div>
     </div>
   );

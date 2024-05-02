@@ -24,10 +24,10 @@ const Login = () => {
   return (
     <div className="w-full h-full pb-[100px] bg-[#fce3fe] pt-[100px]">
       <div
-        className="w-[580px] h-[400px]
+        className="md:w-[580px] h-[400px]
       bg-white m-auto py-[40px] px-[60px]"
       >
-        <h1 className=" text-4xl font-semibold my-[20px]">Login</h1>
+        <h1 className=" text-xl md:text-4xl font-semibold my-[20px]">Login</h1>
         <div className="flex flex-col gap-[30px] mt-[30px]">
           <input
             type="email"
@@ -48,11 +48,11 @@ const Login = () => {
         </div>
         <button
           onClick={handleSign}
-          className="w-[450px] h-[42px] text-white bg-[#ff4141] mt-[30px] border-none text-2xl font-medium   rounded-md cursor-pointer"
+          className="md:w-[450px] h-[42px] px-4 md:px-0 text-white bg-[#ff4141] mt-[30px] border-none text-2xl font-medium   rounded-md cursor-pointer"
         >
           Contiune
         </button>
-        <p className="mt-[20px] text-[#5c5c5c] text-lg font-medium">
+        <p className="mt-[20px] text-[#5c5c5c] text-[14px] md:text-lg font-medium">
           Create an Account ?{" "}
           <span className="text-[#ff4141] font-semibold">
             <Link to={"/signup"}>Sign Up</Link>

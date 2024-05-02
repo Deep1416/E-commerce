@@ -1,28 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import start_icon from "../../Assets/star_icon.png";
 import start_dull_icon from "../../Assets/star_dull_icon.png";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/Slice";
 import { addToWhislist } from "../../redux/WhislistSlice";
-import Protected from "../../protected/Protected";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { addToSize } from "../../redux/Size";
 const ProductDisplay = (props) => {
   const { product } = props;
-
+  const [selectedSize, setSelectedSize] = useState("");
+  const handleSizeClick = (size) => {
+    dispatch(addToSize(size)); // Dispatch addToSize action with the selected size
+    setSelectedSize(size);
+  };
   const dispatch = useDispatch();
   let discount = Math.floor(
     ((product.old_price - product.new_price) / product.old_price) * 100
   );
   const navigate = useNavigate();
   const details = JSON.parse(localStorage.getItem("userDetails"));
-  const addTohandler = () => {
-    if (details?.role) {
-      dispatch(addToCart(product));
+  const addTohandler = (product) => {
+    if (details?.role ) {
+      if(selectedSize != "" ){
+        dispatch(addToCart({ product, selectedSize }));
+      }else{
+        alert("selcted size")
+      }
+      
     } else {
       navigate("/login");
     }
   };
-  const addTowhsliLogin = () => {
+
+  const addTowhsliLogin = (product) => {
     if (details?.role) {
       dispatch(addToWhislist(product));
     } else {
@@ -30,20 +41,20 @@ const ProductDisplay = (props) => {
     }
   };
   return (
-    <div className="flex my-0 mx-[170px]">
+    <div className="flex flex-wrap md:flex-nowrap my-0 md:mx-[170px] mx-5">
       <div className="flex gap-[17px]">
         <div className="flex flex-col gap-4">
-          <img className="h-[163px]" src={product.image} alt="" />
-          <img className="h-[163px]" src={product.image} alt="" />
-          <img className="h-[163px]" src={product.image} alt="" />
-          <img className="h-[163px]" src={product.image} alt="" />
+          <img className="h-16 md:h-[163px]" src={product.image} alt="" />
+          <img className="h-16 md:h-[163px]" src={product.image} alt="" />
+          <img className="h-16 md:h-[163px]" src={product.image} alt="" />
+          <img className="h-16 md:h-[163px]" src={product.image} alt="" />
         </div>
-        <div className="w-[586px] h-[700px]">
+        <div className="w-[250px] h-[300px] md:w-[586px] md:h-[700px]">
           <img className="w-full h-full" src={product.image} alt="" />
         </div>
       </div>
-      <div className="my-0 mx-[70px] flex flex-col">
-        <h1 className="text-[#3d3d3d] text-[40px] font-bold ">
+      <div className="my-0 md:mx-[70px] flex flex-col">
+        <h1 className="text-[#3d3d3d] md:text-[40px] text-[20px] font-bold ">
           {product.name}
         </h1>
         <div className="flex items-center mt-[13px] gap-[5px] text-[#1c1c1c] text-base">
@@ -66,7 +77,7 @@ const ProductDisplay = (props) => {
         <div className="text-lg text-gray-500 mb-4">
           <p>inclusive of all taxes</p>
         </div>
-        <div>
+        <div className="text-[14px]">
           A light weight, Usually Knitted , Pullover Shirt Close-Fitting and
           with a rounde neckLine and short Sleeves , warn as an UnderShirt or
           Outer Garment.
@@ -75,38 +86,60 @@ const ProductDisplay = (props) => {
           <h1 className="mt-[55px] text-[#656565] text-[20px] font-semibold ">
             Select Size
           </h1>
-          <div className="flex my-[30px] mx-0 gap-[20px]">
-            <div className="py-[18px] px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer ">
+          <div className="flex my-[30px] mx-0 gap-[20px] flex-wrap md:flex-nowrap">
+            <button
+              onClick={(e) => handleSizeClick("S")}
+              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer"
+            >
               S
-            </div>
-            <div className="py-[18px] px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer ">
+            </button>
+            <button
+              onClick={() => handleSizeClick("M")}
+              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+            >
               M
-            </div>
-            <div className="py-[18px] px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer ">
+            </button>
+            <button
+              onClick={() => handleSizeClick("L")}
+              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+            >
               L
-            </div>
-            <div className="py-[18px] px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer ">
+            </button>
+            <button
+              onClick={() => handleSizeClick("XL")}
+              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+            >
               XL
-            </div>
-            <div className="py-[18px] px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer ">
+            </button>
+            <button
+              onClick={() => handleSizeClick("XXL")}
+              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+            >
               XXL
-            </div>
+            </button>
           </div>
         </div>
-        <div className="flex gap-6 items-center justify-center">
-          <button
-            className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
-            onClick={() => addTohandler(product)}
+        <div className="flex flex-wrap md:flex-nowrap md:gap-6 items-center justify-center">
+          <motion.button
+            animate={{
+              scale: 0.9,
+            }}
+            className="py-2 px-2 md:py-5 md:px-10 w-[150px] md:w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
+            onClick={() =>
+              dispatch(addTohandler({ ...product, size: selectedSize }))
+            }
           >
             ADD TO Cart
-          </button>
-
-          <button
-            className="py-5 px-10 w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
+          </motion.button>
+          <motion.button
+            animate={{
+              scale: 0.9,
+            }}
+            className="py-2 md:py-5 md:px-10 w-[100px] md:w-[200px] text-base text-white font-semibold bg-[#ff4141] mb-10 border-none outline-none"
             onClick={() => addTowhsliLogin(product)}
           >
             Whislist
-          </button>
+          </motion.button>
         </div>
         <p className="mt-[10px] ">
           <span className="font-semibold">Category :</span>Women , T-shirt ,
