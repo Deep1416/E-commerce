@@ -7,6 +7,7 @@ import { addToWhislist } from "../../redux/WhislistSlice";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { addToSize } from "../../redux/Size";
+import { toast } from "react-toastify";
 const ProductDisplay = (props) => {
   const { product } = props;
   const [selectedSize, setSelectedSize] = useState("");
@@ -21,13 +22,23 @@ const ProductDisplay = (props) => {
   const navigate = useNavigate();
   const details = JSON.parse(localStorage.getItem("userDetails"));
   const addTohandler = (product) => {
-    if (details?.role ) {
-      if(selectedSize != "" ){
+    if (details?.role) {
+      if (selectedSize != "") {
         dispatch(addToCart({ product, selectedSize }));
-      }else{
-        alert("selcted size")
+      } else {
+        // alert("selcted size")
+        toast.dismiss();
+        toast.warn("selcted size", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
-      
     } else {
       navigate("/login");
     }
@@ -89,31 +100,51 @@ const ProductDisplay = (props) => {
           <div className="flex my-[30px] mx-0 gap-[20px] flex-wrap md:flex-nowrap">
             <button
               onClick={(e) => handleSizeClick("S")}
-              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer"
+              className={`py-1 px-2 md:py-[18px] md:px-[24px] bg-${
+                selectedSize === "S"
+                  ? "red-400 text-white border-2 border-gray-600"
+                  : "gray-500"
+              } border border-[#ebebeb] rounded-[3px] cursor-pointer`}
             >
               S
             </button>
             <button
               onClick={() => handleSizeClick("M")}
-              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+              className={`py-1 px-2 md:py-[18px] md:px-[24px] bg-${
+                selectedSize === "M"
+                  ? "red-400 text-white border-2 border-gray-600"
+                  : "gray"
+              } border border-[#ebebeb] rounded-[3px] cursor-pointer`}
             >
               M
             </button>
             <button
               onClick={() => handleSizeClick("L")}
-              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+              className={`py-1 px-2 md:py-[18px] md:px-[24px] bg-${
+                selectedSize === "L"
+                  ? "red-400 text-white border-2 border-gray-600"
+                  : "gray"
+              } border border-[#ebebeb] rounded-[3px] cursor-pointer`}
             >
               L
             </button>
             <button
               onClick={() => handleSizeClick("XL")}
-              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+              className={`py-1 px-2 md:py-[18px] md:px-[24px] bg-${
+                selectedSize === "XL"
+                  ? "red-400 text-white border-2 border-gray-600"
+                  : "gray"
+              } border border-[#ebebeb] rounded-[3px] cursor-pointer`}
             >
               XL
             </button>
             <button
               onClick={() => handleSizeClick("XXL")}
-              className="py-1 px-2 md:py-[18px] md:px-[24px] bg-[#fbfbfb] border border-[#ebebeb] rounded-[3px] cursor-pointer "
+              className={`py-1 px-2 md:py-[18px] md:px-[24px] bg-${
+                selectedSize === "XXL"
+                  ? "red-400 text-white border-2 border-gray-600"
+                  : "gray"
+              } border border-[#ebebeb] rounded-[3px] cursor-pointer`}
             >
               XXL
             </button>

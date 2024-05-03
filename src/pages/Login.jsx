@@ -3,6 +3,7 @@ import { auth, db } from "../firbase/Config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,14 +11,46 @@ const Login = () => {
   const handleSign = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      alert("Login successfully");
-      navigate("/");
+      // const user = await createUserWithEmailAndPassword(auth, email, password);
+      const userObj = {
+        // name: name,
+        uid: user.user.uid,
+        email: user.user.email,
+        role: "user",
+      };
+      const userRefrence = collection(db, "userDetails");
+      addDoc(userRefrence, userObj);
+      localStorage.setItem("userDetails", JSON.stringify(userObj));
+      toast.dismiss();
+      toast.success("Login successfully", {
+        position: "top-center",
+        autoClose: 800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage, errorCode);
-      alert("failed");
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorMessage, errorCode);
+      // alert("failed");
+      toast.dismiss();
+      toast.error("Enter Valid Email and Password", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

@@ -147,7 +147,7 @@ const Cart1 = () => {
                     <button
                       onClick={() => {
                         dispatch(addToWhislist(e)),
-                          dispatch(handleRemove({ id: e.id }));
+                        dispatch(handleRemove({ id: e.id }));
                       }}
                       className="md:px-3 px-1 w-full py-1 md:py-2 md:text-lg font-medium rounded-md bg-red-500 "
                     >

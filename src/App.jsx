@@ -4,6 +4,8 @@ import { Cart, Category, Home, Login, LoginSingup, Product, Whislist } from "./p
 import men_banner from "./Assets/banner_mens.png";
 import women_banner from "./Assets/banner_women.png";
 import kid_banner from "./Assets/banner_kids.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
@@ -31,6 +33,7 @@ function App() {
           <Route path="/whislist" element={<Whislist />} />
 
         </Routes>
+        <ToastContainer />
         <Footer />
       </Router>
     </>
