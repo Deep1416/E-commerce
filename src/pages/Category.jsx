@@ -57,7 +57,7 @@ const Category = (props) => {
       </div>
       <div className="my-[40px] mx-[124px] gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-5 justify-items-center">
         {sortPrice.length > 0 ? (
-          sortPrice.map((item, i) => (
+          sortPrice.map((item, i) => props.items === item.category ? (
             <Items
               key={i}
               id={item.id}
@@ -66,7 +66,8 @@ const Category = (props) => {
               new_price={item.new_price}
               old_price={item.old_price}
             />
-          ))
+          ) : null
+        )
         ) : (
           all_product.map((item, i) =>
             props.items === item.category ? (
