@@ -22,14 +22,14 @@ const Whislist = () => {
   return (
     <>
       {whislistItems.length === 0 ? (
-        <div className="flex justify-center items-center flex-col pt-28">
+        <div className="flex justify-center items-center flex-col pt-20">
           <div>
-            <img src={whislistImage} alt="" />
+            <img className="w-52" src="https://images-static.nykaa.com/nykdesignstudio-images/pub/media/emptyWishlist.jpg" alt="" />
           </div>
           <div className="text-center ">
-            <p className="mt-3">Hey! Your wishlist is empty.</p>
+            <p className="mt-3">Your wishlist is empty!</p>
             <p className="mt-3">
-              Save your favourites here and make them yours soon!
+            Save your favourite items so you don’t lose sight of them.
             </p>
           </div>
           <NavLink to={"/"}>
